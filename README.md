@@ -2,19 +2,20 @@
 inspired by @Traversy Media
 
 {% load i18n staticfiles mezzanine_tags %}
+
 <!-- separtor -->
+
 <div class=" {% if p.slideAnim %} slideanim{% endif %}" style="background-color:#333333 !important">
+
 		<div class="container">
-
-
+		
 <div class="text-center">
-
-
+	
 <p id="Para" style="color:white"></p> <!-- optional -->
+
 <p style="background-color:#aaa">Hello <span id="Title"></span></p>
 
 </div>
-
 
 </div>
 </div>
