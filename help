@@ -1,0 +1,119 @@
+
+ html + css + js => to render data
+
+///////////////////////////////////
+1) add style loader
+///////////////////////////////////
+
+<style>
+/* load styles */
+{% for p in [style data] %}
+.st{{ p.id }}{
+    color: #{{ p.color }};
+    background-color: #{{ p.bkgColor }};
+	font-size:  {{ p.size }};
+	font-family: {{ p.family }};
+}
+{% endfor %}
+</style>
+
+
+///////////////////////////////////
+2) add onload in body
+///////////////////////////////////
+
+<body onload="init()">
+
+///////////////////////////////////
+3) add html
+///////////////////////////////////
+
+
+<p id="Para" ></p> <!-- optional -->
+<p style="background-color:#aaa">:\> <span id="Title"></span></p>
+
+
+
+///////////////////////////////////
+4) add javascript
+///////////////////////////////////
+
+<script>
+
+let speed = 5;
+let pause = 1000;
+
+
+let counter = 0;
+let list = ["Hi this is a module","That will create this type writer effect","javascript in conjonction with django","so site owner can easily","write phrases"]
+let listColor = ["st2","st3","st1","st3","st1","st2"]
+
+let str ="";
+let strLength = 0;
+let isBack= false;
+
+var para="";//optional
+
+function init(){
+writeWord();
+}
+
+function writeWord(){
+
+//when deleting letters
+if (strLength <0){
+  counter++;
+  strLength=0;
+  isBack = false;
+
+  if ( counter > list.length-1 ){
+    counter = 0;
+    para = "";//optional
+    document.getElementById("Para").innerHTML = para ; //optional
+
+    }
+
+  str="";
+}
+
+else if (strLength > (list[counter].length)-1 && !isBack){
+	isBack = true;
+    speed = pause;
+
+  para += str+"<br>" //optional
+  document.getElementById("Para").innerHTML = para ;//optional
+    }
+
+else if (!isBack){
+	prt(1);
+	speed= Math.floor((Math.random() * 200) + 50);
+    }
+
+else if (isBack){
+	prt(-1)
+    speed = 20;
+    }
+
+document.getElementById("Title").className = listColor[counter]
+document.getElementById("Title").innerHTML = str+'|' ;
+setTimeout(writeWord, speed)
+}
+
+function prt(n){
+str="";
+strLength +=n;
+for (let i=0;i <strLength;i++)
+	str += list[counter][i]
+
+}
+
+</script>
+
+
+///////////////////////////////////
+5) add the model in your backend
+///////////////////////////////////
+
+just import the model in your active view
+
+
